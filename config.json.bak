@@ -1,0 +1,30 @@
+{
+  "General": {
+     "OutputDir": "output",
+     "TablesClass": "table table-sm",
+     "HTMLHeader": "<style>td{white-space:nowrap;}.h3{display:inline;}.pulse{border-top:1px #dddddd solid;}</style><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"
+  },
+  "AlienVault-OTX": {
+    "APIKeys": [
+      "YOUR_ALIENVAULT_OTX_API_KEY",
+      "ANOTHER_OPTIONAL_ALIENVAULT_OTX_API_KEY_IF_YOU_NEED_MORE"
+    ],
+    "DisabledAttr": [],
+    "MaxResults": {
+      "malware": 10,
+      "url_list": 10,
+      "passive_dns": 10,
+      "reputation": 10,
+      "general": 10
+    },
+    "Order": ["geo","passive_dns","reputation","malware","url_list","general"],
+    "AttrSubstitution": {
+      "geo": "Geolocation",
+      "passive_dns": "Passive DNS",
+      "reputation": "Observed Malicious Activity",
+      "malware": "Associated Files",
+      "url_list": "Associated URLs",
+      "general": "Submitted Pulses"
+    }
+  }
+}
