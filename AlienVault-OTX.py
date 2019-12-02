@@ -204,26 +204,31 @@ class AlienVault_OTX:
         elif attr=='geo':
           newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
           result[newAttr]=self.formatGeolocation(ip_report_api,attr)
-        elif attr=='passive_dns' and ip_report_api[attr] and ip_report_api[attr][attr]:
-          newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
-          self.history[newAttr]=ip_report_api[attr]['count']
-          result[newAttr]=self.formatArrayDateDomain(ip_report_api,attr)
-        elif attr=='reputation' and ip_report_api[attr] and ip_report_api[attr][attr] and ip_report_api[attr][attr]['activities']:
-          newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
-          self.history[newAttr]=len(ip_report_api[attr][attr]['activities'])
-          result[newAttr]=self.formatArrayDateActivitySource(ip_report_api,attr)
-        elif attr=='malware' and ip_report_api[attr] and ip_report_api[attr]['data']:
-          newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
-          self.history[newAttr]=ip_report_api[attr]['size']
-          result[newAttr]=self.formatArrayDateHashScore(ip_report_api,attr)
-        elif attr=='url_list' and ip_report_api[attr] and ip_report_api[attr][attr]:
-          newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
-          self.history[newAttr]=ip_report_api[attr]['full_size']
-          result[newAttr]=self.formatArrayDateURLStatus(ip_report_api,attr)
-        elif attr=='general' and ip_report_api[attr] and ip_report_api[attr]["pulse_info"] and ip_report_api[attr]["pulse_info"]["pulses"]:
-          newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
-          self.history[newAttr]=ip_report_api[attr]['pulse_info']['count']
-          result[newAttr]=self.formatArrayPulse(ip_report_api,attr)
+        elif attr=='passive_dns':
+          if ip_report_api[attr] and ip_report_api[attr][attr]:
+            newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
+            self.history[newAttr]=ip_report_api[attr]['count']
+            result[newAttr]=self.formatArrayDateDomain(ip_report_api,attr)
+        elif attr=='reputation':
+          if ip_report_api[attr] and ip_report_api[attr][attr] and ip_report_api[attr][attr]['activities']:
+            newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
+            self.history[newAttr]=len(ip_report_api[attr][attr]['activities'])
+            result[newAttr]=self.formatArrayDateActivitySource(ip_report_api,attr)
+        elif attr=='malware':
+          if ip_report_api[attr] and ip_report_api[attr]['data']:
+            newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
+            self.history[newAttr]=ip_report_api[attr]['size']
+            result[newAttr]=self.formatArrayDateHashScore(ip_report_api,attr)
+        elif attr=='url_list':
+          if ip_report_api[attr] and ip_report_api[attr][attr]:
+            newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
+            self.history[newAttr]=ip_report_api[attr]['full_size']
+            result[newAttr]=self.formatArrayDateURLStatus(ip_report_api,attr)
+        elif attr=='general':
+          if ip_report_api[attr] and ip_report_api[attr]["pulse_info"] and ip_report_api[attr]["pulse_info"]["pulses"]:
+            newAttr=AttrSubstitution[attr] if attr in AttrSubstitution else attr
+            self.history[newAttr]=ip_report_api[attr]['pulse_info']['count']
+            result[newAttr]=self.formatArrayPulse(ip_report_api,attr)
         else:
           result[attr]=ip_report_api[attr]
       return result
